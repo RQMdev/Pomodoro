@@ -8,8 +8,23 @@
 	<title>Document</title>
 </head>
 <body>
+	<label for="work">Work</label>
+	<input type="number" name="work" value="25" id="work"><br>
 
-	
+	<label for="break">Break</label>
+	<input type="number" name="break" value="5" id="break"><br>
+
+	<label for="long-break">Long Break</label>
+	<input type="number" name="long-break" value="20" id="long-break"><br>
+
+	<input type="button" name="start" value="START" id="start">
+	<input type="button" name="pause" value="PAUSE" id="pause">
+
+	<div id="clockdiv">
+    <span id="minutes"></span> :
+    <span id="seconds"></span>
+</div>
+
 	<script src="assets/js/jquery-3.2.1.js"></script>
 	<script src="assets/js/main.js"></script>
 </body>
