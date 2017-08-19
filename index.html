@@ -1,29 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<link rel="stylesheet" href="assets/css/font-awesome.css">
 	<link rel="stylesheet" href="assets/css/main.css">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
+	<title>Pomodoro</title>
 </head>
 <body>
-	<label for="work">Work</label>
-	<input type="number" name="work" value="25" id="work"><br>
+	<div id="display-clock">
+    <span id="minutes"></span>:<span id="seconds"></span>
+	</div>
 
-	<label for="break">Break</label>
-	<input type="number" name="break" value="5" id="break"><br>
+	<div id="control-panel">
+		<input type="button" name="start" value="START" id="start">
+		<input type="button" name="pause" value="PAUSE" id="pause">
+	</div>
 
-	<label for="long-break">Long Break</label>
-	<input type="number" name="long-break" value="20" id="long-break"><br>
+	<div id="draggable-wrapper">
+		<div class="draggable time-section work-wrapper">
+			<label for="work">Work</label><br>
+			<input type="number" name="work" value="25" class="work"> min<br>
+			<button class="delete">X</button>
+		</div>
 
-	<input type="button" name="start" value="START" id="start">
-	<input type="button" name="pause" value="PAUSE" id="pause">
+		<div class="draggable time-section break-wrapper">
+			<label for="break">Break</label><br>
+			<input type="number" name="break" value="5" class="break"> min<br>
+			<button class="delete">X</button>
+		</div>
 
-	<div id="clockdiv">
-    <span id="minutes"></span> :
-    <span id="seconds"></span>
-</div>
+		<div class="draggable time-section long-break-wrapper">
+			<label for="long-break">Long Break</label><br>
+			<input type="number" name="long-break" value="20" class="long-break"> min<br>
+			<button class="delete">X</button>
+		</div>
+	</div>
+
+
+
+
+
+	<div class="dropper" id="time-line">
+
+	</div>
 
 	<script src="assets/js/jquery-3.2.1.js"></script>
 	<script src="assets/js/main.js"></script>

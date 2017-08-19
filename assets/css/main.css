@@ -1,0 +1,89 @@
+@font-face {
+  font-family: "Share Tech Mono";
+  src: url('../fonts/ShareTechMono-Regular.ttf');
+}
+
+html {
+  font-family: "Share Tech Mono", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+#display-clock {
+  text-align: center;
+  font-size: 10rem;
+}
+
+#control-panel {
+  text-align: center;
+}
+
+input[type="button"] {
+  padding: 1rem 3rem;
+}
+
+#draggable-wrapper {
+  width: 40vw;
+  display: flex;
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: space-around;
+}
+
+.time-section {
+  padding: 2em;
+  text-transform: uppercase;
+}
+
+.work-wrapper {
+  background-color: #00A779;
+}
+
+.break-wrapper {
+  background-color: #FFC600;
+}
+
+.long-break-wrapper {
+  background-color: #DC0055;
+}
+
+#time-line {
+  overflow-x: scroll;
+  display: flex;
+  width: 100vw;
+  height: 20vh;
+  margin-top: 1rem;
+  background-color: #999;
+  transition: all 200ms linear;
+}
+
+.drop_hover {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8) inset;
+}
+
+input[type="number"] {
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
+  width: 2.3em;
+  outline: none;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  opacity: 1;
+  background-color: green;
+}
+
+input[type="number"].mod::-webkit-outer-spin-button,
+input[type="number"].mod::-webkit-inner-spin-button {
+  background-color: green;
+}
