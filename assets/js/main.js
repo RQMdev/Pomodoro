@@ -83,7 +83,7 @@ function initializeClock(endtime){
 }
 
 function start(){
-	if ( $('#time-line').children().length == 0 && !isRunning){
+	if ( $('#time-line').children().length == 1 && !isRunning){
 		if (Notification.permission === 'denied'){
 			alert('You have to drag and drop at least one time section into the time-line.')
 		} else {
