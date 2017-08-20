@@ -71,7 +71,9 @@ function initializeClock(endtime){
 			}
 			clearInterval(timeInterval);
 			isRunning = false;
-			$('#start').val('START');
+			$('#start').removeClass('fa-stop');
+			$('#start').addClass('fa-play');
+			$('.animation').removeClass('animate');
 			$('#time-line div:first').remove();
 		}
 	}
@@ -82,23 +84,41 @@ function initializeClock(endtime){
 
 function start(){
 	if ( $('#time-line').children().length == 0 && !isRunning){
-		alert('You have to drag and drop at least one time section between WORK, BREAK and LONG BREAK into the time-line.')
+		if (Notification.permission === 'denied'){
+			alert('You have to drag and drop at least one time section into the time-line.')
+		} else {
+			var notification = new Notification("Schedule!", {body:'You have to drag and drop at least one time section into the time-line.'});
+		}
 	} else if (!isRunning){
 		var timer = $('#time-line div:first input').val() * SEC_IN_MIN * MS_IN_SEC;
 		deadline = new Date(Date.parse(new Date()) + timer);
 		initializeClock(deadline);
 		isRunning = true;
-		$('#start').val('STOP');
+		$('#start').removeClass('fa-play');
+		$('#start').addClass('fa-stop');
+		var currentColor = $('#time-line div:first').css('background-color').slice(4, -1);
+
+		$('.animation').css('background-color', 'rgba('+ currentColor +', 0.1)');
+		$('.animation').css('animation-duration', timer +'ms');
+		$('.animation').addClass('animate');
 
 	} else if (isRunning){
 		clearInterval(timeInterval);
 		isRunning = false;
 		isPaused = false;
-		$('#minutes').html(('0' + $('.work').val()).slice(-2));
-		$('#seconds').html('00');
-		$('title').html(('0' + $('.work').val()).slice(-2)+' : 00 Pomodoro');
-		$('#start').val('START');
-		$('#pause').val('PAUSE');
+		if ( $('#time-line').children().length == 0 ){
+			$('#minutes').html(('0' + $('.work').val()).slice(-2));
+			$('#seconds').html('00');
+		} else {
+			$('#minutes').html(('0' + $('#time-line div:first input').val()).slice(-2));
+			$('#seconds').html('00');
+		}
+		$('title').html(('0' + $('#time-line div:first input').val()).slice(-2)+' : 00 Pomodoro');
+		$('#start').removeClass('fa-stop');
+		$('#start').addClass('fa-play');
+		$('#pause').removeClass('fa-play');
+		$('#pause').addClass('fa-pause');
+		$('.animation').removeClass('animate');
 	}
 }
 $('#start').click(start);
@@ -106,17 +126,27 @@ $('#start').click(start);
 
 function pause(){
 
+	function pauseAnimation(){
+		$('.animation').css('-webkit-animation-play-state', function(i, v){
+			return v === 'paused' ? 'running' : 'paused';
+		});
+	}
+
 	if (!isPaused && isRunning){
 		timeLeft = getTimeRemaining(deadline);
 		clearInterval(timeInterval);
 		isPaused = true;
-		$('#pause').val('PLAY');
+		$('#pause').removeClass('fa-pause');
+		$('#pause').addClass('fa-play');
+		pauseAnimation();
 
 	} else if (isPaused && isRunning){
 		deadline = new Date(Date.parse(new Date()) + timeLeft.total);
 		initializeClock(deadline);
 		isPaused = false;
-		$('#pause').val('PAUSE');
+		$('#pause').removeClass('fa-play');
+		$('#pause').addClass('fa-pause');
+		pauseAnimation();
 	}
 }
 $('#pause').click(pause);
@@ -125,12 +155,30 @@ function refresh(){
 
 	$('.delete').click(function(){
 
-		if ( this.parentNode.classList.contains('inTimeLine')){
+		if ( this.parentNode.classList.contains('in-time-line')){
 			this.parentNode.remove();
-
 		}
 	});
 }
+refresh();
+
+
+function sectionTimeUp(){
+	sectionTime = parseInt($(this).parent().siblings('input').val()) + 1;
+	if (sectionTime < 61){
+		$(this).parent().siblings('input').val(('0'+ sectionTime).slice(-2));
+	}
+}
+$('.fa-angle-up').click(sectionTimeUp);
+
+
+function sectionTimeDown(){
+	sectionTime = parseInt($(this).parent().siblings('input').val()) - 1;
+	if (sectionTime > 0){
+		$(this).parent().siblings('input').val(('0'+ sectionTime).slice(-2));
+	}
+}
+$('.fa-angle-down').click(sectionTimeDown);
 
 $(document).keydown(function(e){
 	switch(e.which){
@@ -186,10 +234,17 @@ var dndHandler = {
 			}
 
 			target.className = 'dropper';
-			clonedElement.classList.add('inTimeLine');
+			clonedElement.classList.add('in-time-line');
 			clonedElement.classList.remove('draggable');
+			clonedElement.classList.remove('bound');
 			clonedElement.draggable = false;
 			clonedElement = target.appendChild(clonedElement);
+			$(clonedElement).find('.fa-angle-up').click(sectionTimeUp);
+
+			$(clonedElement).find('.fa-angle-down').click(sectionTimeDown);
+
+			$(clonedElement).find('.fa-angle-down')
+
 
 			refresh();
 			// dndHandler.applyDragEvents(clonedElement);
@@ -210,12 +265,3 @@ var droppers = $('.dropper');
 for (var i = 0; i < droppersLen; i++){
 	dndHandler.applyDropEvents(droppers[i]);
 }
-
-
-
-// var inTimeLine = $('inTimeLine');
-// 		inTimeLineLen = inTimeLine.length;
-//
-// for (var i = 0; i < inTimeLineLen; i++){
-// 	inTimeLine[i].draggable = false;
-// }

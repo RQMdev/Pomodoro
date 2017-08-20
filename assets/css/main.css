@@ -5,11 +5,13 @@
 
 html {
   font-family: "Share Tech Mono", sans-serif;
+  font-size: 14px;
   margin: 0;
   padding: 0;
 }
 
 body {
+  background-color: #fff;
   width: 100vw;
   height: 100vh;
   margin: 0;
@@ -18,29 +20,110 @@ body {
 
 #display-clock {
   text-align: center;
-  font-size: 10rem;
+  font-size: 16rem;
 }
 
 #control-panel {
   text-align: center;
+  font-size: 4rem;
 }
 
-input[type="button"] {
-  padding: 1rem 3rem;
+#start, #pause {
+  position: relative;
+  color: #999;
+  transition: 200ms;
+}
+
+#start:hover, #pause:hover {
+  color: black;
+}
+
+#start:after {
+  position: absolute;
+  content: 'Enter';
+  font-family: "Share Tech Mono";
+  font-size: 1rem;
+  left: 0.3rem;
+  bottom: -20px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 200ms;
+}
+
+#pause:after {
+  position: absolute;
+  content: 'Space';
+  font-family: "Share Tech Mono";
+  font-size: 1rem;
+  left: 0.3rem;
+  bottom: -20px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 200ms;
+}
+
+#start:hover:after {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+#pause:hover:after {
+  opacity: 1;
+  transform: translateY(0px);
 }
 
 #draggable-wrapper {
-  width: 40vw;
+  max-width: 600px;
   display: flex;
-  margin-top: 2rem;
+  margin-top: 3rem;
   margin-left: auto;
   margin-right: auto;
   justify-content: space-around;
 }
 
 .time-section {
-  padding: 2em;
+  position:relative;
+  line-height: 2;
+  min-width: 4rem;
+  padding: 2.6em;
   text-transform: uppercase;
+}
+
+label {
+  font-size: 1.2rem;
+}
+
+.draggable {
+  transform: translateY(0px);
+  transition: 200ms;
+}
+
+.draggable:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2), 0 4px 8px 0 rgba(0,0,0,0.4);
+}
+
+.button-wrapper {
+  position: relative;
+  font-size: 1.5rem;
+  display: inline-flex;
+  flex-direction: column;
+  bottom: 1rem;
+}
+
+.delete {
+  color: white;
+  position: absolute;
+  top: 0.7rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  font-weight: 100;
+  transition: 200ms;
+  opacity: 0;
+}
+
+.in-time-line:hover .delete {
+  opacity: 1;
 }
 
 .work-wrapper {
@@ -59,9 +142,10 @@ input[type="button"] {
   overflow-x: scroll;
   display: flex;
   width: 100vw;
-  height: 20vh;
-  margin-top: 1rem;
-  background-color: #999;
+  min-height: 12.4rem;
+  height: auto;
+  margin-top: 3rem;
+  background-color: rgba(0,0,0,.3);
   transition: all 200ms linear;
 }
 
@@ -73,17 +157,136 @@ input[type="number"] {
   background-color: transparent;
   border: none;
   font-size: 2rem;
-  width: 2.3em;
+  width: 1.1em;
   outline: none;
 }
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
-  opacity: 1;
-  background-color: green;
+  -webkit-appearance: none;
 }
 
-input[type="number"].mod::-webkit-outer-spin-button,
-input[type="number"].mod::-webkit-inner-spin-button {
-  background-color: green;
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.animation {
+  position: fixed;
+  width: 10vw;
+  height: 150vh;
+  top: -25vh;
+  left: 100%;
+
+  background-color: rgba(0,167,121,0.1);
+  z-index: -1;
+  animation-duration: 60s;
+  animation-timing-function: linear;
+}
+
+#animation1.animate {
+  animation-name: animation1;
+}
+
+#animation2.animate {
+  animation-name: animation2;
+  transform-origin: top;
+}
+
+#animation3.animate {
+  animation-name: animation3;
+  transform-origin: bottom;
+}
+
+#animation4.animate {
+  animation-name: animation4;
+  transform-origin: top;
+}
+
+#animation5.animate {
+  animation-name: animation5;
+  transform-origin: bottom;
+}
+
+#animation6.animate {
+  animation-name: animation6;
+}
+
+#animation7.animate {
+  animation-name: animation7;
+}
+
+@keyframes animation1 {
+  0% {
+    transform: translateX(0);
+  } 50% {
+   transform: translateX(calc(-50vw - 50%)) rotate(-10deg);
+  } 100% {
+    transform: translateX(calc(-101vw - 100%));
+  }
+}
+
+@keyframes animation2 {
+  0% {
+    transform: translateX(0) rotate(0);
+  } 50% {
+    transform: translateX(calc(-50vw - 50%)) rotate(10deg);
+  } 100% {
+    transform: translateX(calc(-101vw - 100%)) rotate(0);
+  }
+}
+
+@keyframes animation3 {
+  0% {
+    transform: translateX(0) rotate(0);
+  } 50% {
+    transform: translateX(calc(-50vw - 50%)) rotate(-15deg);
+  } 100% {
+    transform: translateX(calc(-101vw - 100%)) rotate(0);
+  }
+}
+
+@keyframes animation4 {
+  0% {
+    transform: translateX(0) rotate(0);
+  } 50% {
+    transform: translateX(calc(-50vw - 50%)) rotate(30deg);
+  } 100% {
+    transform: translateX(calc(-101vw - 100%)) rotate(0);
+  }
+}
+
+@keyframes animation5 {
+  0% {
+    transform: translateX(0) rotate(0);
+  } 50% {
+    transform: translateX(calc(-50vw - 50%)) rotate(-20deg);
+  } 100% {
+    transform: translateX(calc(-101vw - 100%)) rotate(0);
+  }
+}
+
+@keyframes animation6 {
+  0% {
+    transform: translateX(0) rotate(0);
+  } 50% {
+    transform: translateX(calc(-50vw - 50%)) rotate(35deg);
+  } 100% {
+    transform: translateX(calc(-101vw - 100%)) rotate(0);
+  }
+}
+
+@keyframes animation7 {
+  0% {
+    transform: translateX(0) rotate(0);
+  } 50% {
+    transform: translateX(calc(-50vw - 50%)) rotate(-40deg);
+  } 100% {
+    transform: translateX(calc(-101vw - 100%)) rotate(0);
+  }
 }
