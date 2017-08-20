@@ -87,6 +87,7 @@ body {
   min-width: 4rem;
   padding: 2.6em;
   text-transform: uppercase;
+  border-radius: 12px;
 }
 
 label {
@@ -139,14 +140,26 @@ label {
 }
 
 #time-line {
+  position: relative;
   overflow-x: scroll;
   display: flex;
   width: 100vw;
   min-height: 12.4rem;
   height: auto;
   margin-top: 3rem;
+  text-align: center;
   background-color: rgba(0,0,0,.3);
   transition: all 200ms linear;
+}
+
+#time-line span {
+  position: absolute;
+  font-size: 1.7rem;
+  color: #fff;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .drop_hover {
