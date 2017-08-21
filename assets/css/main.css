@@ -319,3 +319,9 @@ input[type="number"]::-webkit-inner-spin-button {
     transform: translateX(calc(-101vw - 100%)) rotate(0);
   }
 }
+
+@media (max-width: 1336px){
+	html {
+		font-size: 12px;
+	}
+}
