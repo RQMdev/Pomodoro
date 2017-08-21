@@ -113,6 +113,7 @@ label {
 }
 
 .delete {
+  cursor: default;
   color: white;
   position: absolute;
   top: 0.7rem;
@@ -170,13 +171,22 @@ input[type="number"] {
   background-color: transparent;
   border: none;
   font-size: 2rem;
-  width: 1.1em;
+  width: 1.2em;
   outline: none;
 }
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+input[type=number]:focus {
+    outline: 0;
 }
 
 .noselect {
@@ -208,10 +218,9 @@ input[type="number"]::-webkit-inner-spin-button {
 .animation {
   position: fixed;
   width: 10vw;
-  height: 150vh;
-  top: -25vh;
+  height: 200vh;
+  top: -50vh;
   left: 100%;
-
   background-color: rgba(0,167,121,0.1);
   z-index: -1;
   animation-duration: 60s;
@@ -244,10 +253,25 @@ input[type="number"]::-webkit-inner-spin-button {
 
 #animation6.animate {
   animation-name: animation6;
+  transform-origin: top;
 }
 
 #animation7.animate {
   animation-name: animation7;
+}
+
+#animation8.animate {
+  animation-name: animation8;
+  transform-origin: bottom;
+}
+
+#animation9.animate {
+  animation-name: animation9;
+  transform-origin: bottom;
+}
+
+#animation10.animate {
+  animation-name: animation10;
 }
 
 @keyframes animation1 {
@@ -304,7 +328,7 @@ input[type="number"]::-webkit-inner-spin-button {
   0% {
     transform: translateX(0) rotate(0);
   } 50% {
-    transform: translateX(calc(-50vw - 50%)) rotate(35deg);
+    transform: translateX(calc(-50vw - 50%)) rotate(-35deg);
   } 100% {
     transform: translateX(calc(-101vw - 100%)) rotate(0);
   }
@@ -315,6 +339,36 @@ input[type="number"]::-webkit-inner-spin-button {
     transform: translateX(0) rotate(0);
   } 50% {
     transform: translateX(calc(-50vw - 50%)) rotate(-40deg);
+  } 100% {
+    transform: translateX(calc(-101vw - 100%)) rotate(0);
+  }
+}
+
+@keyframes animation8 {
+  0% {
+    transform: translateX(0) rotate(0);
+  } 50% {
+    transform: translateX(calc(-50vw - 50%)) rotate(30deg);
+  } 100% {
+    transform: translateX(calc(-101vw - 100%)) rotate(0);
+  }
+}
+
+@keyframes animation9 {
+  0% {
+    transform: translateX(0) rotate(0);
+  } 50% {
+    transform: translateX(calc(-50vw - 50%)) rotate(-35deg);
+  } 100% {
+    transform: translateX(calc(-101vw - 100%)) rotate(0);
+  }
+}
+
+@keyframes animation10 {
+  0% {
+    transform: translateX(0) rotate(0);
+  } 50% {
+    transform: translateX(calc(-50vw - 50%)) rotate(27deg);
   } 100% {
     transform: translateX(calc(-101vw - 100%)) rotate(0);
   }
