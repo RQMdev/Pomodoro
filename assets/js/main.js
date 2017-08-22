@@ -75,6 +75,11 @@ function initializeClock(endtime){
 			$('#start').addClass('fa-play');
 			$('.animation').removeClass('animate');
 			$('#time-line div:first').remove();
+			if ($('#time-line').children().length == 1){
+				$('#time-line span').css('opacity', '1');
+			} else {
+				$('#time-line span').css('opacity', '0');
+			}
 		}
 	}
 
@@ -152,11 +157,21 @@ function pause(){
 $('#pause').click(pause);
 
 function refresh(){
+	if ($('#time-line').children().length == 1){
+		$('#time-line span').css('opacity', '1');
+	} else {
+		$('#time-line span').css('opacity', '0');
+	}
 
 	$('.delete').click(function(){
 
 		if ( this.parentNode.classList.contains('in-time-line')){
 			this.parentNode.remove();
+		}
+		if ($('#time-line').children().length == 1){
+			$('#time-line span').css('opacity', '1');
+		} else {
+			$('#time-line span').css('opacity', '0');
 		}
 	});
 }
