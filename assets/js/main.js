@@ -271,16 +271,22 @@ var dndHandler = {
 	}
 };
 
-var elements = $('.draggable'),
-		elementsLen = elements.length;
+function dispatchDraggable() {
+	var elements = $('.draggable'),
+			elementsLen = elements.length;
 
-for (var i = 0; i < elementsLen; i++){
-	dndHandler.applyDragEvents(elements[i]);
+	for (var i = 0; i < elementsLen; i++){
+		dndHandler.applyDragEvents(elements[i]);
+	}
 }
+dispatchDraggable();
 
-var droppers = $('.dropper');
-		droppersLen = droppers.length;
+function dispatchDropper() {
+	var droppers = $('.dropper');
+			droppersLen = droppers.length;
 
-for (var i = 0; i < droppersLen; i++){
-	dndHandler.applyDropEvents(droppers[i]);
+	for (var i = 0; i < droppersLen; i++){
+		dndHandler.applyDropEvents(droppers[i]);
+	}
 }
+dispatchDropper();
