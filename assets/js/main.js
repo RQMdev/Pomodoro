@@ -14,13 +14,16 @@ seconds = '00';
 $('#minutes').html(('0' + minutes).slice(-2));
 $('#seconds').html(('0' + seconds).slice(-2));
 
-if (!('Notification' in window)){
-	alert('This browser don\'t support Desktop Notifications.');
-} else if (Notification.permission !== 'denied'){
-	Notification.requestPermission(function(permission){
-		Notification.permission = permission;
-	});
+function requestNotificationPermission(){
+	if (!('Notification' in window)){
+		return alert('This browser don\'t support Desktop Notifications.');
+	} else if (Notification.permission !== 'denied'){
+		return Notification.requestPermission(function(permission){
+			Notification.permission = permission;
+		});
+	}
 }
+requestNotificationPermission();
 
 /*
 Fonction qui va calculer la différence en milliseconde entre le temps actuel et la deadline,
@@ -126,6 +129,7 @@ function start(){
 		$('.animation').removeClass('animate');
 	}
 }
+/* Appel la fonction Start sur un click de l'element #Start */
 $('#start').click(start);
 
 
