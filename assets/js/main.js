@@ -9,10 +9,14 @@ var isPaused = false;
 var notificationTitle = 'Thank You !';
 var notificationBody = 'You can click on this notification to launch the next step.';
 
-minutes = $('.work').val();
-seconds = '00';
-$('#minutes').html(('0' + minutes).slice(-2));
-$('#seconds').html(('0' + seconds).slice(-2));
+function initializeClockDisplay(){
+	minutes = $('.work').val();
+	seconds = '00';
+	$('#minutes').html(('0' + minutes).slice(-2));
+	$('#seconds').html(('0' + seconds).slice(-2));
+	return false;
+}
+initializeClockDisplay();
 
 function requestNotificationPermission(){
 	if (!('Notification' in window)){

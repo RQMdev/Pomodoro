@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Style links -->
+	<link rel="stylesheet" href="assets/css/font-awesome.css">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<!-- Meta -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Pomodoro</title>
+</head>
+<body>
+	<div id="display-clock" class="noselect">
+    <span id="minutes"></span>:<span id="seconds"></span>
+	</div>
+
+	<div id="control-panel" class="noselect">
+		<i class="fa fa-play" aria-hidden="true" id="start"></i>
+		<i class="fa fa-pause" aria-hidden="true" id="pause"></i>
+	</div>
+
+	<div id="draggable-wrapper">
+		<div class="draggable time-section work-wrapper">
+			<label for="work">Work</label><br>
+			<div class="button-wrapper">
+				<i class="fa fa-angle-up" aria-hidden="true"></i>
+				<i class="fa fa-angle-down" aria-hidden="true"></i>
+			</div>
+			<input type="number" name="work" value="25" class="work"> min<br>
+			<i class="fa fa-times delete" aria-hidden="true"></i>
+		</div>
+
+		<div class="draggable time-section break-wrapper">
+			<label for="break">Break</label><br>
+			<div class="button-wrapper">
+				<i class="fa fa-angle-up" aria-hidden="true"></i>
+				<i class="fa fa-angle-down" aria-hidden="true"></i>
+			</div>
+			<input type="number" name="break" value="05" class="break"> min<br>
+			<i class="fa fa-times delete" aria-hidden="true"></i>
+		</div>
+
+		<div class="draggable time-section long-break-wrapper">
+			<label for="long-break">Long Break</label><br>
+			<div class="button-wrapper">
+				<i class="fa fa-angle-up" aria-hidden="true"></i>
+				<i class="fa fa-angle-down" aria-hidden="true"></i>
+			</div>
+			<input type="number" name="long-break" value="20" class="long-break"> min<br>
+			<i class="fa fa-times delete" aria-hidden="true"></i>
+		</div>
+	</div>
+
+	<div class="animation" id="animation1"></div>
+	<div class="animation" id="animation2"></div>
+	<div class="animation" id="animation3"></div>
+	<div class="animation" id="animation4"></div>
+	<div class="animation" id="animation5"></div>
+	<div class="animation" id="animation6"></div>
+	<div class="animation" id="animation7"></div>
+	<div class="animation" id="animation8"></div>
+	<div class="animation" id="animation9"></div>
+	<div class="animation" id="animation10"></div>
+
+
+	<div class="dropper noselect" id="time-line">
+		<span class="noselect">Drag and Drop some Time Section to Schedule a Workflow !</span>
+	</div>
+
+	<!-- Main Scripts -->
+	<script src="assets/js/jquery-3.2.1.js"></script>
+	<script src="assets/js/main.js"></script>
+</body>
+</html>
