@@ -2,7 +2,7 @@
 
 ## English
 This is a little front-end App I started to develop from a **Challenge** given by my school over a week-end.  
-It's about scheduling a workflow using the [Pomodoro Technique](https://en.wikipedia.org/wiki/Pomodoro_Technique"Wikipedia Pomodoro").  
+It's about scheduling a workflow using the [Pomodoro Technique](https://en.wikipedia.org/wiki/Pomodoro_Technique "Wikipedia Pomodoro").  
 I used **Desktop Notification** so the App could be hidden and still be able to remind you to have a break.
 I also tried a little implementation of **Drag-and-Drop** design to give users choices.
 
